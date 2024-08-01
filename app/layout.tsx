@@ -1,3 +1,4 @@
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import './reset.css';
 
@@ -13,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-BR'>
+      <VercelAnalytics />
       <body>{children}</body>
     </html>
   );
