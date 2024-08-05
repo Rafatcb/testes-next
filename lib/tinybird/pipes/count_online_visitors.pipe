@@ -1,0 +1,25 @@
+VERSION 1
+
+NODE latest_page_view_leave_by_session
+SQL >
+    SELECT
+      session_id,
+      MAX(CASE WHEN type IN ('page-view', 'page-return') THEN timestamp_utc ELSE NULL END) AS latest_page_view,
+      MAX(CASE WHEN type = 'page-leave' THEN timestamp_utc ELSE NULL END) AS latest_page_leave
+    FROM
+      page_views__v1
+    WHERE
+      timestamp_utc >= NOW() - INTERVAL 1 HOUR
+      AND type IN ('page-view', 'page-return', 'page-leave')
+    GROUP BY
+      session_id
+
+NODE count_online_visitors
+SQL >
+    SELECT
+      COUNT(DISTINCT session_id) AS online_visitors
+    FROM
+      latest_page_view_leave_by_session
+    WHERE
+      latest_page_leave IS NULL
+      OR latest_page_view > latest_page_leave

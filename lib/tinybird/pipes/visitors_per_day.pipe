@@ -1,0 +1,17 @@
+VERSION 1
+
+NODE visitors_per_day
+SQL >
+    %
+    SELECT
+      toDate(timestamp_utc) AS day,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      page_views__v1
+    WHERE
+      timestamp_utc >= now() - INTERVAL {{Int32(days)}} DAY
+    GROUP BY
+      day
+    ORDER BY
+      day

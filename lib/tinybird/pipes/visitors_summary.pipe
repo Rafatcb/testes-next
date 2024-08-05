@@ -1,0 +1,112 @@
+VERSION 1
+
+NODE filtered_data
+SQL >
+    %
+    SELECT
+      browser,
+      country,
+      toDate(timestamp_utc) AS day,
+      os,
+      request_path,
+      referrer,
+      session_id
+    FROM
+      page_views__v1
+    WHERE
+      timestamp_utc >= now() - INTERVAL {{Int32(days)}} DAY
+
+NODE visitors_summary
+SQL >
+    %
+    SELECT
+      'browser' AS dimension,
+      browser AS value,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      filtered_data
+    GROUP BY
+      browser
+    ORDER BY
+      unique_visitors DESC
+    LIMIT
+      {{Int32(limit, 5)}}
+
+    UNION ALL
+
+    SELECT
+      'country' AS dimension,
+      country AS value,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      filtered_data
+    GROUP BY
+      country
+    ORDER BY
+      unique_visitors DESC
+    LIMIT
+      {{Int32(limit, 5)}}
+
+    UNION ALL
+
+    SELECT
+      'day' AS dimension,
+      toString(day) AS value,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      filtered_data
+    GROUP BY
+      day
+    ORDER BY
+      day
+
+    UNION ALL
+
+    SELECT
+      'os' AS dimension,
+      os AS value,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      filtered_data
+    GROUP BY
+      os
+    ORDER BY
+      unique_visitors DESC
+    LIMIT
+      {{Int32(limit, 5)}}
+
+    UNION ALL
+
+    SELECT
+      'request_path' AS dimension,
+      request_path AS value,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      filtered_data
+    GROUP BY
+      request_path
+    ORDER BY
+      unique_visitors DESC
+    LIMIT
+      {{Int32(limit, 5)}}
+
+    UNION ALL
+
+    SELECT
+      'referrer' AS dimension,
+      referrer AS value,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      filtered_data
+    GROUP BY
+      referrer
+    ORDER BY
+      unique_visitors DESC
+    LIMIT
+      {{Int32(limit, 5)}}
