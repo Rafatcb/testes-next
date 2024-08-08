@@ -2,6 +2,11 @@
   padding: 2rem;
 }
 
+.page button {
+  display: block;
+  margin: 0 auto;
+}
+
 .firstRow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
