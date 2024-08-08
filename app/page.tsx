@@ -4,7 +4,7 @@ import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <p>Aplicação em Next.js para experimentos 🚀</p>
 
       <p>

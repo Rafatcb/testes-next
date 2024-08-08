@@ -29,6 +29,8 @@ A visualização dos dados na Vercel é desta forma:
 
 ![Gráfico para quantidade de visitantes únicos por dia e para visualizações de páginas por dia. Tabelas para as páginas visitadas, referrers, países, sistemas operacionais, navegadores, eventos e flags.](./public/vercel-analytics.png)
 
+A Vercel conta como "online" os visitantes dos últimos três minutos.
+
 ### Solução própria
 
 Inspirado pelo artigo [_How to save $13.27 on your sAAs bill_](https://dgerrells.com/blog/how-to-save-13-27-on-your-saas-bill), decidi testar uma implementação própria do analytics. Para isso, o cliente precisa enviar um `POST` com os dados que desejamos salvar para uma API, e a API irá tratar os dados e armazená-los, podendo obter ainda mais dados pelos cabeçalhos da requisição.

@@ -26,12 +26,6 @@ export async function POST(request: Request) {
   const uaParser = new UAParser(request.headers.get('user-agent') ?? '');
   const { browser, cpu, device, engine, os } = uaParser.getResult();
 
-  console.log(
-    `safeBody.referrer: "${safeBody.referrer}"; request.referrer: "${
-      request.referrer
-    }"; request.headers.get("referrer"): "${request.headers.get('referrer')}"`
-  );
-
   const pageViewObject: PageViewEventInput = {
     type: safeBody.type,
     request_path: safeBody.request_path,
