@@ -68,3 +68,9 @@ No artigo, o autor criou uma função na Vercel para servir como rota, que irá 
 Além da economia financeira, podemos ter acesso à mais dados e por mais tempo. Optar por um VPS ao invés do Tinybird pode trazer uma economia ainda maior, dependendo do seu nível de uso. Para evitar possíveis abusos, trate os dados no servidor que foram recebidos pelo cliente. Se for necessário liberar espaço por causa do tamanho do banco de dados, é possível agregar os dados antigos numa tabela separada, e/ou extrair para outro lugar mais barato, como o S3, caso não queira perder os dados originais.
 
 Para realizar a integração com o Tinybird, adaptei o guia do artigo [_Building a Real-Time Analytics Dashboard with Next.js, Tinybird, and Tremor: A Comprehensive Guide_](https://dev.to/mfts/building-a-real-time-analytics-dashboard-with-nextjs-tinybird-and-tremor-a-comprehensive-guide-15k0) e também consultei a [documentação oficial](https://www.tinybird.co/docs/).
+
+### Materialized View no Tinybird
+
+Usar Materialized Views é uma forma de economizar processamento. No Tinybird, uma Materialized View é como um Pipe de transformação, mas que o resultado final é um tipo especial de Datasource: a Materialized View. A população inicial dessa Materialized View não consome nenhuma cota do Tinybird, mas as inserções incrementais consomem.
+
+As Materialized Views transferem a carga computacional do tempo de consulta para o tempo de ingestão. Não tenho certeza se o custo computacional continua o mesmo (quantidade de dados processados) ou se ele consegue otimizar com base no que já foi agregado. Se o custo continuar o mesmo, então utilizar uma Materialized View não é uma boa forma de otimizar os custos de processamento nos cenários onde a leitura ocorre numa frequência menor do que a escrita (é o caso de analytics).

@@ -1,0 +1,9 @@
+SCHEMA >
+    `request_path` String,
+    `session_id` String,
+    `visit_time` DateTime,
+    `visit_count` AggregateFunction(countDistinct, String)
+
+ENGINE "AggregatingMergeTree"
+ENGINE_PARTITION_KEY "toYear(visit_time)"
+ENGINE_SORTING_KEY "request_path, visit_time, session_id"
