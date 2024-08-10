@@ -4,8 +4,6 @@ Para usar as variáveis de ambiente, crie um arquivo `.env.local` na raiz do pro
 
 ## Analytics
 
-Branch: [`analytics`](https://github.com/Rafatcb/testes-next/tree/analytics).
-
 ### Vercel Analytics
 
 Para usar o [Analytics da Vercel](https://vercel.com/docs/analytics) em React, basta habilitá-lo no seu projeto da Vercel, instalar o pacote `@vercel/analytics` e importar o componente e usá-lo, por exemplo:
