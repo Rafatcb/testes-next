@@ -1,6 +1,6 @@
 const url = 'https://api.us-east.aws.tinybird.co';
 const countOnlineVisitorsPipe = 'count_online_visitors__v1';
-const visitorsSummaryPipe = 'visitors_summary__v1';
+const visitorsSummaryPipe = 'visitors_summary__v2';
 const headers = {
   Authorization: `Bearer ${process.env.TINYBIRD_TOKEN}`,
   'Content-Type': 'application/json'
