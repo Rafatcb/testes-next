@@ -1,0 +1,19 @@
+NODE aggregated_visits_mv
+
+SQL >
+    SELECT
+      request_path,
+      session_id,
+      date_trunc('minute', toStartOfFifteenMinutes(timestamp_utc)) AS visit_time,
+      COUNTDistinctState(session_id) AS visit_count
+    FROM page_views__v1
+    WHERE
+      type = 'page-view'
+    GROUP BY
+      request_path,
+      session_id,
+      visit_time
+    ORDER BY visit_time ASC
+
+TYPE materialized
+DATASOURCE aggregated_page_views_mv

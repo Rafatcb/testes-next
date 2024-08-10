@@ -3,3 +3,8 @@
   margin: auto;
   filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
 }
+
+.paragraph {
+  max-width: 80rem;
+  margin: 0 auto;
+}

@@ -1,4 +1,6 @@
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
+import { Analytics } from './components/Analytics';
 import './reset.css';
 
 export const metadata: Metadata = {
@@ -13,6 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-BR'>
+      <VercelAnalytics />
+      <Analytics />
       <body>{children}</body>
     </html>
   );

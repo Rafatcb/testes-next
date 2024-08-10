@@ -1,0 +1,27 @@
+VERSION 1
+
+DESCRIPTION >
+  Eventos de quando um usuário visualiza uma página, abandona ou retorna ao site
+
+SCHEMA >
+  `type` String `json:$.type`,
+  `request_path` String `json:$.request_path`,
+  `session_id` String `json:$.session_id`,
+  `timestamp_utc` DateTime `json:$.timestamp_utc`,
+  `country` String `json:$.country`,
+  `browser` String `json:$.browser`,
+  `browser_version` String `json:$.browser_version`,
+  `engine` String `json:$.engine`,
+  `engine_version` String `json:$.engine_version`,
+  `os` String `json:$.os`,
+  `os_version` String `json:$.os_version`,
+  `device` String `json:$.device`,
+  `device_vendor` String `json:$.device_vendor`,
+  `device_model` String `json:$.device_model`,
+  `cpu_architecture` String `json:$.cpu_architecture`,
+  `referrer` String `json:$.referrer`,
+  `ip` String `json:$.ip`
+
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "timestamp_utc, session_id, type, request_path, referrer, country, os, browser, ip"

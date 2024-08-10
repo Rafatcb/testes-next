@@ -4,8 +4,9 @@ import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <p>Aplicação em Next.js para experimentos 🚀</p>
+    <main>
+      <h1>Testando analytics 🚀</h1>
+      <p className={styles.paragraph}>Estou testando o Tinybird como alternativa ao Analytics da Vercel. Sua visita já está colaborando com a análise. Obrigado!</p>
 
       <p>
         <Link href='/pagina/2'>Ir para a próxima página</Link>

@@ -1,0 +1,9 @@
+NODE page_views_count_per_path
+SQL >
+    %
+    SELECT
+      COUNT(*)
+    FROM
+      aggregated_page_views_mv
+    WHERE
+      request_path = {{String(path)}}

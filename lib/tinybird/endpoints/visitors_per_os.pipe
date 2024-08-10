@@ -1,0 +1,19 @@
+VERSION 1
+
+NODE visitors_per_os
+SQL >
+    %
+    SELECT
+      os,
+      COUNT(DISTINCT session_id) AS unique_visitors,
+      COUNT(*) AS views
+    FROM
+      page_views__v1
+    WHERE
+      timestamp_utc >= now() - INTERVAL {{Int32(days)}} DAY
+    GROUP BY
+      os
+    ORDER BY
+      unique_visitors DESC
+    LIMIT
+      {{Int32(limit, 5)}}
