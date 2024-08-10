@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  background-color: #2e4879;
+}
+
+main {
+  padding: 6rem;
+}
+
+main p {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  color: #e0e1dd;
+}
+
+main a {
+  color: #e0e1dd;
+}
